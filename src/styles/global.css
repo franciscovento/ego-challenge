@@ -1,0 +1,19 @@
+/* The integration's default injected base.css file */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color: @apply text-app-text;
+  }
+}
+
+@layer utilities {
+  .app-banner {
+    @apply w-screen m-auto relative left-[calc(-50vw_+_50%)];
+  }
+  .app-container {
+    @apply m-auto px-4 sm:px-12 lg:max-w-[1200px];
+  }
+}

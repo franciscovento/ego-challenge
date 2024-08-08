@@ -1,0 +1,30 @@
+---
+import SvgLogo from '../assets/SvgLogo.astro';
+import SvgMenu from '../assets/SvgMenu.astro';
+---
+
+<header
+  class="flex items-center justify-between px-4 sm:px-12 h-[70px] border-b"
+>
+  <div class="flex items-center gap-20">
+    <SvgLogo />
+    <nav class="hidden sm:block">
+      <ul class="flex items-center gap-5">
+        <li
+          class="h-[70px] font-semibold text-sm border-b-4 border-transparent cursor-pointer hover:border-app-accent hover:text-app-accent duration-200 flex items-center px-6"
+        >
+          Modelos
+        </li>
+        <li
+          class="h-[70px] font-semibold text-sm border-b-4 border-transparent cursor-pointer hover:border-app-accent hover:text-app-accent duration-200 flex items-center px-6"
+        >
+          Ficha de Modelo
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    Menú
+    <SvgMenu />
+  </div>
+</header>
