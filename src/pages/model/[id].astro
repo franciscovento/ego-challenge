@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { fetchModel, fetchModels } from '../../services/models.services';
+
+export async function getStaticPaths() {
+  const { data } = await fetchModels();
+  return data.map((model) => {
+    return {
+      params: {
+        id: model.id,
+      },
+    };
+  });
+}
+const { id } = Astro.params;
+const { data:model } = await fetchModel(id);
+
+
+---
+<Layout title={model.name}  >
+  <section>{model.name}</section>
+</Layout>

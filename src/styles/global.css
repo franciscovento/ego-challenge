@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    color: @apply text-app-text;
+  h1 {
+    @apply text-app-text;
   }
 }
 
