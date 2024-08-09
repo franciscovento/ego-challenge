@@ -16,16 +16,16 @@ const { pathname } = Astro.url
     </a>
     <nav class="hidden sm:block">
       <ul class="flex items-center gap-5">
-        <li
+        <a href="/"
           class:list={["h-[70px] font-semibold text-sm border-b-4 border-transparent cursor-pointer hover:border-app-accent hover:text-app-accent duration-200 flex items-center px-6", {
-            'border-app-accent  text-app-accent': pathname === '/',
+            '!border-app-accent  text-app-accent': pathname === '/',
           }]}
         >
           Modelos
-        </li>
+        </a>
         <li
         class:list={["h-[70px] font-semibold text-sm border-b-4 border-transparent cursor-pointer hover:border-app-accent hover:text-app-accent duration-200 flex items-center px-6", {
-          'border-app-accent text-app-accent': pathname.includes('/model'),
+          '!border-app-accent text-app-accent': pathname.includes('/model'),
         }]}
         >
           Ficha de Modelo

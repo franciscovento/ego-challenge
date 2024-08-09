@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { fetchModel, fetchModels } from '../../services/models.services';
 
@@ -18,5 +19,41 @@ const { data:model } = await fetchModel(id);
 
 ---
 <Layout title={model.name}  >
-  <section>{model.name}</section>
+  <div class="grid sm:grid-cols-2 gap-x-12 items-center">
+    <Image src={model.photo} alt={model.name} width={560} height={320} />
+    <div class="flex flex-col gap-4">
+      <div>
+        <span class="text-xl font-semibold pb-2 block">{model.segment}</span>
+        <h1 class="text-4xl lg:text-5xl font-semibold">{model.title}</h1>
+      </div>
+      <div set:html={model.description}></div>
+    </div>
+  </div>
+    <div class="hidden sm:grid sm:grid-cols-2 py-8 gap-12 items-center">
+      {model.model_highlights.map((highlights, i) => (
+          i % 2 === 0 ? (
+            <div class="flex flex-col gap-4">
+              <h2 class="text-xl  font-semibold">{highlights.title}</h2>
+              <div set:html={highlights.content}></div>
+            </div>
+             <Image class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />
+          ) : (
+          <Image class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />
+          <div class="flex flex-col gap-4">
+              <h2 class="text-xl  font-semibold">{highlights.title}</h2>
+              <div set:html={highlights.content}></div>
+            </div>
+          )
+      ))}
+    </div>
+
+    <div class="sm:hidden grid sm:grid-cols-2 py-8 gap-8 items-center">
+      {model.model_highlights.map((highlights) => (
+         <div class="flex flex-col gap-4">
+              <h2 class="text-xl font-semibold">{highlights.title}</h2>
+              <div set:html={highlights.content}></div>
+          </div>
+          <Image class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />  
+      ))}
+    </div>
 </Layout>
