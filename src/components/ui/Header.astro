@@ -1,6 +1,7 @@
 ---
 import SvgLogo from '../assets/SvgLogo.astro';
-import SvgMenu from '../assets/SvgMenu.astro';
+
+import Menu from './client/Menu.tsx';
 
 
 const { pathname } = Astro.url
@@ -33,8 +34,9 @@ const { pathname } = Astro.url
       </ul>
     </nav>
   </div>
-  <div class="flex items-center gap-4">
+  <Menu client:load />
+  <!-- <div class="flex items-center gap-4">
     Menú
     <SvgMenu />
-  </div>
+  </div> -->
 </header>
