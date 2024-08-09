@@ -11,5 +11,5 @@ export default defineConfig({
     }),
     preact(),
   ],
-  output: 'hybrid',
+  output: 'static',
 });
