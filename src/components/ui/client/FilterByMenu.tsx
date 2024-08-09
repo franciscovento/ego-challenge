@@ -34,7 +34,7 @@ const FilterByMenu: FC<Props> = ({ changueFilterStrategy }) => {
       </div>
       <div
         class={
-          ' lg:hidden group font-semibold text-sm flex items-center justify-center gap-1 relative'
+          ' lg:hidden select-none group font-semibold text-sm flex items-center justify-center gap-1 relative'
         }
       >
         Filtrar por

@@ -127,11 +127,10 @@ const items = [
 </style>
 <script>
   import Swiper from 'swiper';
-  import { Navigation, Pagination } from 'swiper/modules';
-  const swiper = new Swiper('.swiper', {
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+  new Swiper('.swiper', {
     wrapperClass: 'swiper-wrapper',
     slidesPerView: 'auto',
-    centeredSlides: true,
     loop: true,
     initialSlide: 4,
     pagination: {
@@ -144,9 +143,6 @@ const items = [
     breakpoints: {
       0: {
         slidesPerView: 1,
-      },
-      370: {
-        slidesPerView: 1.2,
       },
       450: {
         slidesPerView: 1.5,
@@ -172,6 +168,6 @@ const items = [
     },
     speed: 400,
     spaceBetween: 0,
-    modules: [Navigation, Pagination],
+    modules: [Navigation, Pagination, Autoplay],
   });
 </script>

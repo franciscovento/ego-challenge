@@ -10,8 +10,14 @@ interface Props {
 const { name, image, description } = Astro.props;
 ---
 
-<article class="flex flex-col gap-2 max-w-[268px] bg-transparent">
-  <Image class={'rounded-lg'} src={image} alt={''} width={268} height={146} />
+<article class="flex flex-col gap-2 bg-transparent mx-4">
+  <Image
+    class={'rounded-lg w-full h-[146px] object-cover'}
+    src={image}
+    alt={''}
+    width={268}
+    height={146}
+  />
   <h3 class="text-xl font-semibold">{name}</h3>
   <div class="h-16 overflow-hidden relative">
     <p>{description}</p>
