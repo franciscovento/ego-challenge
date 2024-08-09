@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'preact/hooks';
 import type { FC } from 'preact/compat';
 import type { Models } from '../../../utils/interfaces/models.interface';
 import ProductCard from './ProductCard';
 import useFilterModels from '../../../utils/hooks/useFilterModels.hooks';
-import Filter from './Filter';
 import useOrderByModels from '../../../utils/hooks/useOrderByModels.hooks';
+import FilterByMenu from './FilterByMenu';
+import OrderByMenu from './OrderByMenu';
 
 interface Props {
   models: Models[];
@@ -15,10 +15,10 @@ const Cars: FC<Props> = ({ models }) => {
 
   return (
     <>
-      <Filter
-        changueFilterStrategy={changueFilterStrategy}
-        changueOrderByStrategy={changueOrderByStrategy}
-      />
+      <div class={'flex justify-between border-b pb-4'}>
+        <FilterByMenu changueFilterStrategy={changueFilterStrategy} />
+        <OrderByMenu changueOrderByStrategy={changueOrderByStrategy} />
+      </div>
       <section class="grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-y-8 py-8">
         {orderedModels(filteredModels(models)).map((model) => (
           <ProductCard
