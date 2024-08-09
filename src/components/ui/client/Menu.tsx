@@ -52,7 +52,7 @@ const Menu = () => {
         <div
           onClick={() => setOpen(false)}
           class={
-            'fixed hidden sm:block w-full h-screen bg-black/50 animate-fadeIn top-0 left-0  '
+            'fixed hidden z-40 sm:block w-full h-screen bg-black/50 animate-fadeIn top-0 left-0  '
           }
         ></div>
       )}
@@ -65,7 +65,7 @@ const Menu = () => {
           ' w-full sm:w-80 z-50 bg-white h-svh fixed top-0 right-0 duration-300 ease-in-out overflow-y-auto flex flex-col gap-4 text-xl '
         }
       >
-        <div class={'flex items-center justify-end p-4'}>
+        <div class={'flex items-center justify-end p-4 mr-4'}>
           <button
             onClick={() => setOpen(false)}
             class={'flex items-center text-sm gap-2  h-[40px]'}
@@ -88,7 +88,7 @@ const Menu = () => {
             </svg>
           </button>
         </div>
-        <ul class={'flex flex-col gap-2 pb-4 items-end border-b px-4'}>
+        <ul class={'flex flex-col gap-2 pb-4 items-end border-b px-4 mr-4'}>
           {menu[0].map((item) => {
             return (
               <li>
@@ -97,7 +97,7 @@ const Menu = () => {
             );
           })}
         </ul>
-        <ul class={'flex flex-col gap-2 py-4 items-end border-b px-4'}>
+        <ul class={'flex flex-col gap-2 py-4 items-end border-b px-4 mr-4'}>
           {menu[1].map((item) => {
             return (
               <li>
@@ -106,7 +106,7 @@ const Menu = () => {
             );
           })}
         </ul>
-        <ul class={'flex flex-col gap-2 py-4 items-end px-4 '}>
+        <ul class={'flex flex-col gap-2 py-4 items-end px-4 mr-4'}>
           {menu[2].map((item) => {
             return (
               <li>
@@ -117,7 +117,7 @@ const Menu = () => {
         </ul>
         <ul
           class={
-            'flex flex-1 flex-col gap-2 pb-4 pt-6 items-end bg-app-bg-tertiary px-4'
+            'flex flex-1 flex-col gap-2 pb-4 pt-6 items-end bg-app-bg-tertiary px-8 '
           }
         >
           {menu[3].map((item) => {

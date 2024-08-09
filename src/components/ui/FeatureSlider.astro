@@ -1,0 +1,177 @@
+---
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import type { ModelFeature } from '../../utils/interfaces/models.interface';
+import Feature from './Feature.astro';
+
+interface Props {
+  featureItems: ModelFeature[];
+}
+
+const { featureItems } = Astro.props;
+
+const items = [
+  ...featureItems,
+  ...featureItems,
+  ...featureItems,
+  ...featureItems,
+];
+---
+
+<!-- Slider main container -->
+<div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    {
+      items.map((feature) => {
+        return (
+          <div class="swiper-slide">
+            <Feature
+              image={feature.image}
+              name={feature.name}
+              description={feature.description}
+            />
+          </div>
+        );
+      })
+    }
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="button-prev navigation">
+    <svg
+      width="12"
+      height="21"
+      viewBox="0 0 12 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10.2908 21C10.9839 20.9977 11.6062 20.5691 11.8704 19.9143C12.134 19.2595 11.9879 18.5057 11.5013 18.0028L4.13758 10.4523L11.5013 2.90186C12.0846 2.20543 12.0461 1.1636 11.4112 0.515547C10.7779 -0.134753 9.76128 -0.174694 9.08077 0.42329L0.49885 9.21303C-0.166283 9.89877 -0.166283 11.0059 0.49885 11.6916L9.08077 20.4813C9.40043 20.811 9.83598 20.9977 10.2908 21Z"
+        fill="#474747"></path>
+    </svg>
+  </div>
+  <div class="button-next navigation">
+    <svg
+      width="12"
+      height="21"
+      viewBox="0 0 12 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M1.70925 0C1.01611 0.00225067 0.393814 0.430908 0.129628 1.08571C-0.134009 1.74051 0.0120898 2.49432 0.498719 2.99723L7.86242 10.5477L0.498719 18.0981C-0.0845769 18.7946 -0.0461299 19.8364 0.588795 20.4845C1.22207 21.1348 2.23872 21.1747 2.91923 20.5767L11.5012 11.787C12.1663 11.1012 12.1663 9.99415 11.5012 9.3084L2.91923 0.518665C2.59957 0.189014 2.16402 0.00225067 1.70925 0Z"
+        fill="#474747"></path>
+    </svg>
+  </div>
+</div>
+<style>
+  .swiper {
+    padding-top: 10px;
+    .swiper-pagination-bullet {
+      background: #9e9e9e;
+      transtion: all 0.3s ease;
+      width: 8px;
+    }
+    .swiper-pagination-bullet-active {
+      background: #939393;
+      width: 40px;
+      border-radius: 12px;
+      animation: grow 0.3s ease;
+    }
+  }
+
+  @keyframes grow {
+    from {
+      width: 8px;
+    }
+    to {
+      width: 40px;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    background: #e1e2e2;
+    opacity: 0.9;
+    position: absolute;
+    width: 45px;
+    height: 150px;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+  }
+  .navigation:hover {
+    opacity: 1;
+  }
+  .button-next {
+    border-radius: 12px 0 0 12px;
+    top: 10px;
+    right: 0;
+  }
+  .button-prev {
+    border-radius: 0 12px 12px 0;
+    top: 10px;
+    left: 0;
+  }
+</style>
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination } from 'swiper/modules';
+  const swiper = new Swiper('.swiper', {
+    wrapperClass: 'swiper-wrapper',
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    loop: true,
+    initialSlide: 4,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.button-next',
+      prevEl: '.button-prev',
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      370: {
+        slidesPerView: 1.2,
+      },
+      450: {
+        slidesPerView: 1.5,
+      },
+      560: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 2.2,
+      },
+      900: {
+        slidesPerView: 3,
+      },
+      1200: {
+        slidesPerView: 4,
+      },
+      1500: {
+        slidesPerView: 5,
+      },
+      1600: {
+        slidesPerView: 6,
+      },
+    },
+    speed: 400,
+    spaceBetween: 0,
+    modules: [Navigation, Pagination],
+  });
+</script>

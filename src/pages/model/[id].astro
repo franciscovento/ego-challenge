@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { fetchModel, fetchModels } from '../../services/models.services';
+import FeatureSlider from '../../components/ui/FeatureSlider.astro';
 
 export async function getStaticPaths() {
   const { data } = await fetchModels();
@@ -29,6 +30,11 @@ const { data:model } = await fetchModel(id);
       <div set:html={model.description}></div>
     </div>
   </div>
+  <div class="w-full h-12"></div>
+  <div class="app-banner bg-app-bg-secondary py-12 mb-12">
+    <FeatureSlider  featureItems={model.model_features} />
+  </div>
+  <div class="w-full h-12"></div>
     <div class="hidden sm:grid sm:grid-cols-2 py-8 gap-12 items-center">
       {model.model_highlights.map((highlights, i) => (
           i % 2 === 0 ? (
