@@ -14,6 +14,7 @@
     "@astrojs/preact": "^3.5.1",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/montserrat": "^5.0.19",
+    "aos": "^2.3.4",
     "astro": "^4.13.2",
     "preact": "^10.23.1",
     "swiper": "^11.1.9",
@@ -21,6 +22,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"
   }

@@ -21,31 +21,33 @@ const { data:model } = await fetchModel(id);
 ---
 <Layout title={model.name}  >
   <div class="grid sm:grid-cols-2 gap-x-12 items-center">
-    <Image src={model.photo} alt={model.name} width={560} height={320} />
+    <div data-aos="fade-in"  data-aos-duration="1200" >
+      <Image src={model.photo} alt={model.name} width={560} height={320} />
+    </div>
     <div class="flex flex-col gap-4">
       <div>
-        <span class="text-xl font-semibold pb-2 block">{model.segment}</span>
-        <h1 class="text-4xl lg:text-5xl font-semibold">{model.title}</h1>
+        <span data-aos="fade-down"  data-aos-duration="600" class="text-xl font-semibold pb-2 block">{model.segment}</span>
+        <h1 data-aos="fade-up"  data-aos-duration="600" class="text-4xl lg:text-5xl font-semibold">{model.title}</h1>
       </div>
-      <div set:html={model.description}></div>
+      <div data-aos="fade-left"  data-aos-duration="600" set:html={model.description}></div>
     </div>
   </div>
   <div class="w-full h-12"></div>
-  <div class="app-banner bg-app-bg-secondary py-12 mb-12">
+  <div  data-aos="fade-in"  data-aos-duration="600" data-aos-delay="500" class="app-banner bg-app-bg-secondary py-12 mb-12">
     <FeatureSlider  featureItems={model.model_features} />
   </div>
   <div class="w-full h-12"></div>
     <div class="hidden sm:grid sm:grid-cols-2 py-8 gap-12 items-center">
       {model.model_highlights.map((highlights, i) => (
           i % 2 === 0 ? (
-            <div class="flex flex-col gap-4">
+            <div data-aos="zoom-in" class="flex flex-col gap-4">
               <h2 class="text-xl  font-semibold">{highlights.title}</h2>
               <div set:html={highlights.content}></div>
             </div>
-             <Image class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />
+             <Image data-aos="zoom-in" class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />
           ) : (
-          <Image class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />
-          <div class="flex flex-col gap-4">
+          <Image data-aos="zoom-in" class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />
+          <div data-aos="zoom-in" class="flex flex-col gap-4">
               <h2 class="text-xl  font-semibold">{highlights.title}</h2>
               <div set:html={highlights.content}></div>
             </div>
@@ -55,11 +57,11 @@ const { data:model } = await fetchModel(id);
 
     <div class="sm:hidden grid sm:grid-cols-2 py-8 gap-8 items-center">
       {model.model_highlights.map((highlights) => (
-         <div class="flex flex-col gap-4">
+         <div data-aos="zoom-in" class="flex flex-col gap-4">
               <h2 class="text-xl font-semibold">{highlights.title}</h2>
               <div set:html={highlights.content}></div>
           </div>
-          <Image class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />  
+          <Image data-aos="zoom-in" class={'rounded-lg'} src={highlights.image} alt={highlights.title} width={560} height={320} />  
       ))}
     </div>
 </Layout>

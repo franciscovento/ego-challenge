@@ -19,16 +19,22 @@ const Cars: FC<Props> = ({ models }) => {
         <FilterByMenu changueFilterStrategy={changueFilterStrategy} />
         <OrderByMenu changueOrderByStrategy={changueOrderByStrategy} />
       </div>
-      <section class="grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-y-8 py-8">
-        {orderedModels(filteredModels(models)).map((model) => (
-          <ProductCard
-            key={model.id}
-            price={model.price}
-            thumbnail={model.thumbnail}
-            id={model.id}
-            name={model.name}
-            year={model.year}
-          />
+      <section class="grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-y-8 py-8 overflow-hidden">
+        {orderedModels(filteredModels(models)).map((model, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={50 * i}
+            data-aos-duration="600"
+          >
+            <ProductCard
+              key={model.id}
+              price={model.price}
+              thumbnail={model.thumbnail}
+              id={model.id}
+              name={model.name}
+              year={model.year}
+            />
+          </div>
         ))}
       </section>
       {orderedModels(filteredModels(models)).length === 0 && (

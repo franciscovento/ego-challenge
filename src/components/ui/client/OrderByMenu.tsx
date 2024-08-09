@@ -19,7 +19,7 @@ const OrderByMenu: FC<Props> = ({ changueOrderByStrategy }) => {
   return (
     <div
       class={
-        'group font-semibold text-sm flex items-center justify-center gap-1 relative select-none'
+        'group font-semibold text-sm flex items-center justify-center gap-1 relative '
       }
     >
       Ordenar por
