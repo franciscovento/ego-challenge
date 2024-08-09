@@ -17,3 +17,34 @@
     @apply m-auto px-4 sm:px-12 lg:max-w-[1200px];
   }
 }
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #eeeeee;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #eeeeee;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #eeeeee;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: #212121;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #212121;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #212121;
+}

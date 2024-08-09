@@ -13,6 +13,7 @@ export default {
         'app-text': '#373737',
         'app-bg-primary': '#FFFFFF',
         'app-bg-secondary': '#F7F7F7',
+        'app-bg-tertiary': '#E5E5E5',
       },
     },
   },
