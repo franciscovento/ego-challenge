@@ -1,0 +1,42 @@
+import type { FC } from 'preact/compat';
+import { getPriceFormat } from '../../../utils/helpers/getPriceFormat.helper';
+
+interface Props {
+  name: string;
+  year: number;
+  price: number;
+  thumbnail: string;
+  id: number;
+}
+const ProductCard: FC<Props> = ({ id, name, price, year, thumbnail }) => {
+  return (
+    <article class="grid justify-items-center items-baseline group">
+      <div class="flex flex-col gap-1 items-center justify-center relative top-4">
+        <h2 class="font-semibold text-[28px] group-hover:text-app-accent duration-300">
+          {' '}
+          {name}{' '}
+        </h2>
+        <span class="text-sm font-normal">
+          {' '}
+          {year} | {getPriceFormat(price)}
+        </span>
+      </div>
+      <img
+        src={thumbnail}
+        alt="A bird."
+        width={228}
+        height={132}
+        class="object-contain h-[132px]"
+      />
+      <a
+        data-astro-reload
+        class="text-[13px] flex items-center justify-center font-medium bg-app-primary text-white w-40 h-8 rounded-full duration-300 opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-2"
+        href={`/model/${id}`}
+      >
+        Ver Modelo
+      </a>
+    </article>
+  );
+};
+
+export default ProductCard;

@@ -1,7 +1,7 @@
 ---
-import ProductCard from '../components/ui/ProductCard.astro';
 import Layout from '../layouts/Layout.astro';
 import { type Models } from '../utils/interfaces/models.interface';
+import Cars from '../components/ui/client/Cars';
 
 const response = await fetch('https://challenge.egodesign.dev/api/models/');
 const models = (await response.json()) as Models[];
@@ -11,21 +11,5 @@ const models = (await response.json()) as Models[];
   <h1 class="text-4xl sm:text-5xl font-bold pb-12 sm:pb-20">
     Descubrí todos los modelos
   </h1>
-  <section>FILTER</section>
-
-  <section class="grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-y-8">
-    {
-      models.map((model) => (
-        <ProductCard
-          price={model.price}
-          thumbnail={model.thumbnail}
-          id={model.id}
-          name={model.name}
-          year={model.year}
-        />
-      ))
-    }
-  </section>
+  <Cars models={models} client:load />
 </Layout>
-
-<style></style>
