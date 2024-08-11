@@ -1,32 +1,36 @@
-import { useState, type FC } from 'preact/compat';
-import type { Filter } from '../../../utils/interfaces/filter.interface';
-import type { Models } from '../../../utils/interfaces/models.interface';
-import {
-  filters,
-  type FilterProps,
-} from '../../../utils/strategys/filterModels.strategy';
+import { useCallback, type FC } from 'preact/compat';
+import type { OrderBy, Segment } from '../../../services/models.services';
 import ChipButton from './ChipButton';
+import { throttle } from '../../../utils/helpers/throttle';
+import { filterTypes } from '../../../utils/data/filtersTypes.data';
 
 interface Props {
-  changueFilterStrategy: (strategy: Filter<Models[]>) => void;
+  currentParams: { ordering?: OrderBy; segment?: Segment };
+  setSegment: (segment: Segment | '') => void;
 }
-const FilterByMenu: FC<Props> = ({ changueFilterStrategy }) => {
-  const [currentFilter, setCurrentFilter] = useState<number>(1);
-
-  const handleChangueFilterStrategy = (filter: FilterProps) => {
-    setCurrentFilter(filter.id);
-    changueFilterStrategy(filter.strategy);
-  };
+const FilterMenu: FC<Props> = ({ currentParams, setSegment }) => {
+  const handleSegment = useCallback(
+    throttle((segment: Segment | '') => {
+      setSegment(segment);
+    }, 500),
+    []
+  );
 
   return (
     <>
       <div class={'hidden lg:flex items-center gap-10'}>
         <span class={'font-semibold text-sm'}>Filtrar por:</span>
-        {filters.map((filter, i) => (
+        <ChipButton
+          isActive={!currentParams.segment}
+          onClick={() => handleSegment('')}
+        >
+          Todos
+        </ChipButton>
+        {filterTypes.map((filter, i) => (
           <ChipButton
-            isActive={filter.id === currentFilter}
-            onClick={() => handleChangueFilterStrategy(filter)}
             key={i}
+            isActive={filter.id === currentParams.segment}
+            onClick={() => handleSegment(filter.id)}
           >
             {filter.name}
           </ChipButton>
@@ -74,14 +78,24 @@ const FilterByMenu: FC<Props> = ({ changueFilterStrategy }) => {
               ' shadow-xl border bg-white text-left flex items-start flex-col  w-[158px]'
             }
           >
-            {filters.map((filter, i) => {
+            <button
+              onClick={() => setSegment('')}
+              style={{
+                backgroundColor:
+                  currentParams.segment === undefined ? '#f5f5f5' : 'white',
+              }}
+              class={'duration-300 w-full text-left border-b pl-3 py-3'}
+            >
+              Todos
+            </button>
+            {filterTypes.map((filter, i) => {
               return (
                 <button
                   key={i}
-                  onClick={() => handleChangueFilterStrategy(filter)}
+                  onClick={() => setSegment(filter.id)}
                   style={{
                     backgroundColor:
-                      filter.id === currentFilter ? '#f5f5f5' : 'white',
+                      filter.id === currentParams.segment ? '#f5f5f5' : 'white',
                   }}
                   class={'duration-300 w-full text-left border-b pl-3 py-3'}
                 >
@@ -96,4 +110,4 @@ const FilterByMenu: FC<Props> = ({ changueFilterStrategy }) => {
   );
 };
 
-export default FilterByMenu;
+export default FilterMenu;

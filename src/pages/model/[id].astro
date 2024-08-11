@@ -6,7 +6,7 @@ import FeatureSlider from '../../components/ui/FeatureSlider.astro';
 import { Fragment } from 'preact';
 
 export async function getStaticPaths() {
-  const { data } = await fetchModels();
+  const { data } = await fetchModels({});
   return data.map((model) => {
     return {
       params: {

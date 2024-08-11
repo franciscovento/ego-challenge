@@ -1,21 +1,19 @@
-import { useState, type FC } from 'preact/compat';
-import type { Models } from '../../../utils/interfaces/models.interface';
-import type { OrderBy } from '../../../utils/interfaces/orderBy.interface';
-import {
-  orderByTypes,
-  type OrderByProps,
-} from '../../../utils/strategys/orderByModels.strategy';
+import { useCallback, type FC } from 'preact/compat';
+import type { OrderBy, Segment } from '../../../services/models.services';
+import { throttle } from '../../../utils/helpers/throttle';
+import { orderByTypes } from '../../../utils/data/orderTypes.data';
 
 interface Props {
-  changueOrderByStrategy: (strategy: OrderBy<Models[]>) => void;
+  currentParams: { ordering?: OrderBy; segment?: Segment };
+  setOrdering: (ordering: OrderBy | '') => void;
 }
-const OrderByMenu: FC<Props> = ({ changueOrderByStrategy }) => {
-  const [currentOrderBy, setCurrentOrderBy] = useState<number>(1);
-  const handleChangueOrderByStrategy = (orderBy: OrderByProps) => {
-    setCurrentOrderBy(orderBy.id);
-    changueOrderByStrategy(orderBy.strategy);
-  };
-
+const OrderMenu: FC<Props> = ({ setOrdering, currentParams }) => {
+  const handleOrderBy = useCallback(
+    throttle((ordering: OrderBy | '') => {
+      setOrdering(ordering);
+    }, 1000),
+    []
+  );
   return (
     <div
       class={
@@ -59,14 +57,25 @@ const OrderByMenu: FC<Props> = ({ changueOrderByStrategy }) => {
             ' shadow-xl border bg-white text-left flex items-start flex-col  w-[158px]'
           }
         >
+          <button
+            onClick={() => handleOrderBy('')}
+            style={{
+              backgroundColor: !currentParams.ordering ? '#f5f5f5' : 'white',
+            }}
+            class={'duration-300 w-full text-left border-b pl-3 py-3'}
+          >
+            Nada
+          </button>
           {orderByTypes.map((orderByT, i) => {
             return (
               <button
                 key={i}
-                onClick={() => handleChangueOrderByStrategy(orderByT)}
+                onClick={() => handleOrderBy(orderByT.id)}
                 style={{
                   backgroundColor:
-                    orderByT.id === currentOrderBy ? '#f5f5f5' : 'white',
+                    orderByT.id === currentParams.ordering
+                      ? '#f5f5f5'
+                      : 'white',
                 }}
                 class={'duration-300 w-full text-left border-b pl-3 py-3'}
                 dangerouslySetInnerHTML={{ __html: orderByT.name }}
@@ -79,4 +88,4 @@ const OrderByMenu: FC<Props> = ({ changueOrderByStrategy }) => {
   );
 };
 
-export default OrderByMenu;
+export default OrderMenu;
